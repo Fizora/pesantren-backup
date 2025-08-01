@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <!-- Template untuk Wallet -->
+    <!-- <t t-name="Wallet" t-inherit="muk_web_appsbar.AppsBar" t-inherit-mode="extension" owl="1">
+        <xpath expr="//img[@class='img-fluid mx-auto']" position="before">
+            <div class="wallet_currency" 
+                style="width: auto; padding: 5px 10px; background: #0b5b54; color: white; border-radius: 5px; text-align: center;">
+                Rp. <span t-esc="state.wallet_balance || '0'"/>
+            </div>
+        </xpath>
+    </t> -->
+</templates>

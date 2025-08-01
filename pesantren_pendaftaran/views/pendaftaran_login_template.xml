@@ -1,0 +1,648 @@
+<odoo>
+  <template id="pendaftaran_login_template" name="Login">
+    <t t-call="web.html_container">
+      <t t-set="title">Login - Daarul Quran Istiqomah</t>
+      <head>
+        <!-- Primary Meta Tags -->
+        <title>PSB Daarul Qur`an Istiqomah</title>
+        <meta name="title" content="PSB Daarul Qur`an Istiqomah" />
+        <meta name="description" content="Pendaftaran Santri Baru PP Daarul Qur`an Istiqomah Tahun pelajaran 2025-2026 Telah dibuka. segera daftarkan anak anda sekarang" />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://aplikasi.dqi.ac.id/pendaftaran" />
+        <meta property="og:title" content="PSB Daarul Qur`an Istiqomah" />
+        <meta property="og:description" content="Pendaftaran Santri Baru PP Daarul Qur`an Istiqomah Tahun pelajaran 2025-2026 Telah dibuka. segera daftarkan anak anda sekarang" />
+        <meta property="og:image" content="https://drive.usercontent.google.com/download?id=1VZRccbFtq82wTNcReEq43piA_GJQddcm" />
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://aplikasi.dqi.ac.id/pendaftaran" />
+        <meta property="twitter:title" content="PSB Daarul Qur`an Istiqomah" />
+        <meta property="twitter:description" content="Pendaftaran Santri Baru PP Daarul Qur`an Istiqomah Tahun pelajaran 2025-2026 Telah dibuka. segera daftarkan anak anda sekarang" />
+        <meta property="twitter:image" content="https://drive.usercontent.google.com/download?id=1VZRccbFtq82wTNcReEq43piA_GJQddcm" />
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet"/>
+      </head>
+      <link rel="icon" type="image/x-icon" href="/pesantren_pendaftaran/static/img/favicon.ico?v=1" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+      <style>
+        .main-container {
+          background: #f5f5f4 !important;
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          font-family: "poppins";
+        }
+        
+        /* Improved Navbar Styling */
+        .navbar {
+          padding: 0.5rem 1rem;
+         
+        }
+        
+        .navbar-brand {
+          display: block;
+          align-items: center;
+          gap: 0.75rem;
+          font-weight: 600;
+          color: white !important;
+        }
+        
+        .navbar-brand img {
+          width: 40px;
+          height: auto;
+        }
+        
+        .nav-link {
+          font-weight: 500;
+          padding: 0.5rem 1rem;
+          transition: all 0.3s ease;
+          border-radius: 4px;
+          color: black;
+        }
+        
+        .nav-link:hover {
+          background-color: rgba(255,255,255,0.2);
+          color: #EFF3EA;
+        }
+        
+        /* Offcanvas Improvements */
+        .offcanvas.offcanvas-end {
+          width: 280px;
+          background: white !important;
+        }
+        
+        .offcanvas .navbar-nav {
+          margin-top: 2rem;
+        }
+        
+        .offcanvas .nav-link {
+          color: #ffffff;
+          padding: 0.75rem 1rem;
+          margin-bottom: 0.5rem;
+          border-radius: 4px;
+        }
+        
+        .offcanvas .nav-link:hover {
+          background-color: rgba(255,255,255,0.2);
+        }
+        
+        <!-- .offcanvas .btn-close {
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+          filter: invert(1);
+          color: black;
+          background-color: black;
+        } -->
+        
+        /* Card Styling */
+        .login-card {
+          background-color: white;
+          border-radius: 12px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+          overflow: hidden;
+          padding: 2rem;
+          margin: 2rem auto;
+          max-width: 500px;
+          width: 90%;
+        }
+        
+        .login-header {
+          text-align: center;
+          margin-bottom: 2rem;
+        }
+        
+        .login-header img {
+          width: 80px;
+          height: auto;
+          margin-bottom: 1rem;
+          transition: transform 0.3s ease;
+        }
+        
+        .login-header img:hover {
+          transform: scale(1.05);
+        }
+        
+        .login-header h1 {
+          color: #333;
+          font-weight: 600;
+          font-size: 1.75rem;
+          margin-bottom: 0.5rem;
+        } 
+        
+        /* Form Styling */
+        .form-label {
+          font-weight: 500;
+          color: #444;
+          margin-bottom: 0.5rem;
+        }
+        
+        .form-control {
+          border: 1px solid #e0e0e0;
+          border-radius: 6px;
+          padding: 0.75rem;
+          font-size: 1rem;
+          transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+          border-color: #065c5c;
+          box-shadow: 0 0 0 3px rgba(6, 92, 92, 0.15);
+        }
+        
+        .input-group-text {
+          background-color: #f8f9fa;
+          border: 1px solid #e0e0e0;
+          color: #555;
+        }
+        
+        /* Radio Button Styling */
+        .form-check {
+          margin-bottom: 0.5rem;
+        }
+        
+        .form-check-input {
+          width: 1.2em;
+          height: 1.2em;
+          margin-top: 0.25em;
+          cursor: pointer;
+        }
+        
+        .form-check-input:checked {
+          background-color: #065c5c;
+          border-color: #065c5c;
+        }
+        
+        .form-check-label {
+          cursor: pointer;
+          padding-left: 0.25rem;
+          font-weight: 400;
+        }
+        
+        /* Button Styling */
+        .login-btn {
+          background-color: #065c5c;
+          color: white;
+          border: none;
+          padding: 0.75rem 1rem;
+          border-radius: 6px;
+          font-weight: 500;
+          font-size: 1rem;
+          width: 100%;
+          margin-top: 1rem;
+          transition: all 0.3s ease;
+          cursor: pointer;
+        }
+        
+        .login-btn:hover {
+          background-color: #054949;
+          transform: translateY(-2px);
+          box-shadow: 0 5px 15px rgba(6, 92, 92, 0.3);
+        }
+        
+        /* Password toggle icon */
+        .password-toggle {
+          position: absolute;
+          right: 12px;
+          top: 50%;
+          transform: translateY(-50%);
+          color: #555;
+          cursor: pointer;
+          z-index: 10;
+          background: transparent;
+          border: none;
+          padding: 0;
+          font-size: 1.1rem;
+        }
+        
+        /* Dropdown Styling */
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          top: 100%;
+          right: 0;
+          background-color: white;
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+          border-radius: 8px;
+          min-width: 180px;
+          z-index: 100;
+          overflow: hidden;
+          padding: 0.5rem 0;
+          margin-top: 0.5rem;
+        }
+        
+        .dropdown-content a {
+          color: #333;
+          padding: 0.75rem 1.25rem;
+          display: block;
+          text-decoration: none;
+          transition: background-color 0.2s;
+          font-weight: 500;
+        }
+        
+        .dropdown-content a:hover {
+          background-color: #f5f5f5;
+          color: #065c5c;
+        }
+        
+        .dropdown:hover .dropdown-content {
+          display: block;
+          animation: fadeIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        /* Footer Styling */
+        footer {
+          margin-top: auto;
+          padding: 1.5rem 2rem;
+          color: white;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 1rem;
+        }
+        
+        footer ul {
+          list-style-type: none;
+          display: flex;
+          gap: 1.5rem;
+          margin: 0;
+          padding: 0;
+        }
+        
+        footer a {
+          color: white;
+          text-decoration: none;
+          font-weight: 500;
+          transition: opacity 0.3s ease;
+          font-size: 0.9rem;
+          text-transform: uppercase;
+        }
+        
+        footer a:hover {
+          opacity: 0.8;
+          text-decoration: underline;
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+          .navbar-brand {
+            font-size: 1rem;
+          }
+          
+          .login-card {
+            padding: 1.5rem;
+            margin: 1rem auto;
+          }
+          
+          .login-header h1 {
+            font-size: 1.5rem;
+          }
+          
+          footer {
+            flex-direction: column;
+            text-align: center;
+            padding: 1rem;
+          }
+          
+          footer ul {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+          }
+        }
+        
+        @media (max-width: 576px) {
+          .navbar-brand {
+            font-size: 0.9rem;
+          }
+          
+          .navbar-brand img {
+            width: 32px;
+          }
+          
+          .login-card {
+            padding: 1.25rem;
+          }
+          
+          .login-header img {
+            width: 60px;
+          }
+          
+          .login-header h1 {
+            font-size: 1.25rem;
+          }
+          
+          .form-label, .form-control, .form-check-label {
+            font-size: 0.9rem;
+          }
+          
+          .login-btn {
+            font-size: 0.9rem;
+          }
+        }
+      </style>
+      <div class="main-container">
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-expand-lg" style="color: black; background-color: white;">
+          <div class="container">
+            <a class="navbar-brand" href="/psb" style="color: black;">
+              <img src="https://i.ibb.co.com/1MFsvMq/1731466812700.png" alt="Logo Pesantren" />
+              <span class="mx-2" style="color: black;">Daarul Qur'an Istiqomah</span>
+            </a>
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="/psb" style="color: black;">
+                    <i class="fa-solid fa-house me-2"></i>Beranda
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/pendaftaran" style="color: black;">
+                    <i class="fa-solid fa-note-sticky me-2"></i>Pendaftaran
+                  </a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a href="#" class="dropdown-link nav-link" style="color: black;">
+                    <i class="fa-solid fa-fingerprint me-2"></i>Login
+                  </a>
+                  <div class="dropdown-content">
+                    <a href="/login" style="color: black;">Login PSB</a>
+                    <a href="/web/login" style="color: black;">Login Orang Tua</a>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/bantuan" style="color: black !important;">
+                    <i class="fa-solid fa-lock me-2"></i>Bantuan
+                  </a>
+                </li>
+                <t t-if="is_halaman_pengumuman">
+                  <li class="nav-item dropdown">
+                    <a href="#" class="dropdown-link nav-link" style="color: black;">
+                      <i class="fa-solid fa-bullhorn me-2"></i>Pengumuman
+                    </a>
+                    <div class="dropdown-content">
+                      <a href="/pengumuman/sd-mi">SD / MI</a>
+                      <a href="/pengumuman/smp-mts">SMP / MTS</a>
+                      <a href="/pengumuman/sma-ma">SMA / MA</a>
+                    </div>
+                  </li>
+                </t>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Offcanvas Menu -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style="background-color: white !important;">
+          <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          <a class="navbar-brand mt-4 text-center" href="/psb">
+            <img class="w-25 h-auto" src="https://i.ibb.co.com/1MFsvMq/1731466812700.png" alt="Logo Pesantren" />
+            <span class="d-block mt-2">Daarul Qur'an Istiqomah</span>
+          </a>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/psb" style="color: black;">
+                  <i class="fa-solid fa-house me-2"></i>Beranda
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/pendaftaran" style="color: black;">
+                  <i class="fa-solid fa-note-sticky me-2"></i>Pendaftaran
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a href="#" class="dropdown-link nav-link" style="color: black;">
+                  <i class="fa-solid fa-fingerprint me-2" ></i>Login
+                </a>
+                <div class="dropdown-content">
+                  <a href="/login" style="color: black;">Login PSB</a>
+                  <a href="/web/login" style="color: black;">Login Orang Tua</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/bantuan" style="color: black;">
+                  <i class="fa-solid fa-lock me-2"></i>Bantuan
+                </a>
+              </li>
+              <t t-if="is_halaman_pengumuman">
+                <li class="nav-item dropdown">
+                  <a href="#" class="dropdown-link nav-link">
+                    <i class="fa-solid fa-bullhorn me-2"></i>Pengumuman
+                  </a>
+                  <div class="dropdown-content">
+                    <a href="/pengumuman/sd-mi">SD / MI</a>
+                    <a href="/pengumuman/smp-mts">SMP / MTS</a>
+                    <a href="/pengumuman/sma-ma">SMA / MA</a>
+                  </div>
+                </li>
+              </t>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Login Form -->
+        <div class="container flex-grow-1 d-flex align-items-center">
+          <div class="login-card">
+            <div class="login-header">
+              <h1>Login</h1>
+              <img src="https://i.ibb.co.com/1MFsvMq/1731466812700.png" alt="Logo DQI" />
+            </div>
+            
+            <form action="/login/submit" method="post" class="needs-validation" novalidate="true">
+              <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+              
+              <div class="mb-4">
+                <label class="form-label fw-semibold">Login dengan</label>
+                <div class="form-check">
+                  <input type="radio" class="form-check-input" name="login_method" id="phone-option" value="phone" checked="true" />
+                  <label class="form-check-label" for="phone-option">No Telp/WA</label>
+                </div>
+                <div class="form-check">
+                  <input type="radio" class="form-check-input" name="login_method" id="email-option" value="email" />
+                  <label class="form-check-label" for="email-option">Email</label>
+                </div>
+              </div>
+              
+              <div class="mb-4" id="phone-field">
+                <label for="phone" class="form-label">No Telp/WA <span class="text-danger">*</span></label>
+                <div class="input-group">
+                  <span class="input-group-text">
+                    <i class="fa-solid fa-phone"></i>
+                  </span>
+                  <input type="text" class="form-control" name="phone" id="phone" autocomplete="off" required="true" placeholder="Masukkan nomor telepon" />
+                  <div class="invalid-feedback">
+                    Harap memasukkan nomor telepon anda.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="mb-4" id="email-field" style="display: none;">
+                <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                <div class="input-group">
+                  <span class="input-group-text">
+                    <i class="fa-solid fa-envelope"></i>
+                  </span>
+                  <input type="email" class="form-control" name="email" id="email" autocomplete="off" placeholder="Masukkan email anda" />
+                  <div class="invalid-feedback">
+                    Harap memasukkan email anda.
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Password Input -->
+              <div class="mb-4">
+                <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+                <div class="input-group position-relative">
+                  <span class="input-group-text">
+                    <i class="fa-solid fa-lock"></i>
+                  </span>
+                  <input type="password" class="form-control" name="password" id="password" autocomplete="off" required="true" placeholder="Masukkan password" />
+                  <button type="button" class="password-toggle" onclick="togglePasswordVisibility()">
+                    <i class="fa-solid fa-eye-slash"></i>
+                  </button>
+                  <div class="invalid-feedback">
+                    Harap memasukkan password anda.
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Submit Button -->
+              <button type="submit" class="login-btn" style=" background-color: #059669 !important;"> 
+                <i class="fa-solid fa-right-to-bracket me-2"></i>Login
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+          <div class="ms-5">
+            <ul class="">
+              <li>
+                <a href="/psb" style="text-decoration: none; color: black;">Home</a>
+              </li>
+              <li>
+                <a href="/beranda" style="text-decoration: none; color: black;" target="_blank">Info Pondok</a>
+              </li>
+              <li>
+                <a href="https://drive.google.com/drive/mobile/folders/1EYat5411joyoOmH_DkJ3g2DeJKgyyuBQ?usp=share_link&amp;fbclid=IwY2xjawGflGlleHRuA2FlbQIxMQABHTusVv9hD3VRDSLW9-671QhOL86e3KMv30smsAYW0DHkkWf7zwPlcBlbeA_aem_XXofAY-ay0syx043L5BLvw" style="text-decoration: none; color: black;" target="_blank">Brosur</a>
+              </li>
+              <li>
+                <a href="" style="text-decoration: none; color: black;">Panduan</a>
+              </li>
+            </ul>
+          </div>
+          <div class="me-5" style="margin-left: auto;">
+            <p class="text-end mt-1 " style="color: black;">© 2024 TIM IT PPIB</p>
+          </div>
+        </footer>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="modalPendaftaranTutup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Pendaftaran ditutup!</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>Mohon maaf, pendaftaran telah ditutup.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+      (() => {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+          form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+          }, false)
+        })
+      })()
+
+      // Cari elemen body dengan class spesifik
+        const bodyElement = document.querySelector('body.o_body_html.container.overflow-x-hidden');
+        // Jika elemen ditemukan, hapus class "container"
+        if (bodyElement) {
+        bodyElement.classList.remove('o_body_html');
+        bodyElement.classList.remove('container');
+        }
+
+        // Membuat elemen link
+        var linkElement = document.createElement('link');
+        linkElement.rel = 'icon';
+        linkElement.type = 'image/x-icon';
+        linkElement.href = '/pesantren_pendaftaran/static/img/favicon.ico?v=1';
+
+        // Menambahkan elemen ke dalam tag head
+        document.head.appendChild(linkElement);
+
+        function togglePasswordVisibility() {
+        // Ambil elemen input password
+        const passwordInput = document.getElementById('password');
+        // Ambil elemen ikon mata
+        const eyeIcon = document.querySelector('.password-toggle i');
+      
+        // Periksa tipe input, lalu ubah visibilitas dan ikon
+        if (passwordInput.type === 'password') {
+          passwordInput.type = 'text'; // Ubah ke teks untuk menampilkan password
+          eyeIcon.classList.replace('fa-eye-slash', 'fa-eye'); // Ubah ikon menjadi mata tertutup
+        } else {
+          passwordInput.type = 'password'; // Ubah ke password untuk menyembunyikan password
+          eyeIcon.classList.replace('fa-eye', 'fa-eye-slash'); // Ubah ikon menjadi mata terbuka
+        }
+      }
+
+
+
+      // Switch between email and phone number fields based on selection 
+      document.querySelectorAll('input[name="login_method"]').forEach((element) => {
+        element.addEventListener('change', function() {
+          if (this.value === 'phone') {
+            document.getElementById('phone-field').style.display = 'block';
+            document.getElementById('email-field').style.display = 'none'; document.getElementById('phone').required= true; document.getElementById('email').required= false; document.getElementById('password').required= true;
+          } else {
+            document.getElementById('email-field').style.display = 'block';
+            document.getElementById('phone-field').style.display = 'none'; document.getElementById('email').required= true; document.getElementById('phone').required= false; document.getElementById('password').required= true;
+          }
+        });
+      });
+      </script>
+
+    </t>
+  </template>
+</odoo>

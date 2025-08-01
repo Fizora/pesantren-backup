@@ -1,0 +1,259 @@
+<odoo>
+    <!-- Custom Login Layout Template -->
+    <template id="middle_login_layout" name="Midle Login Layout">
+        <t t-call="web.layout">
+            <t t-set="html_data" t-value="{'style': 'height: 100%;'}"/>
+            <t t-set="head">
+                <t t-call-assets="web.assets_common" t-js="false"/>
+                <t t-call-assets="web.assets_frontend" t-js="false"/>
+                <t t-call-assets="web.assets_common" t-css="false"/>
+                <t t-call-assets="web.assets_frontend" t-css="false"/>
+                
+                <!-- Custom CSS for Login page -->
+                <style>
+                    body {
+                        margin: 0;
+                        padding: 0;
+                        height: 100vh;
+                        background: white;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-family: 'Roboto', sans-serif;
+                    }
+                    
+                    .login-container {
+                        background-color: white;
+                        border-radius: 16px;
+                        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+                        width: 100%;
+                        max-width: 400px;
+                        padding: 40px;
+                        box-sizing: border-box;
+                    }
+                    
+                    .login-title {
+                        font-size: 28px;
+                        font-weight: 600;
+                        color: #333;
+                        text-align: center;
+                        margin-bottom: 20px;
+                    }
+                    
+                    .logo-container {
+                        text-align: center;
+                        margin-bottom: 30px;
+                    }
+                    
+                    .logo-container img {
+                        max-height: 120px;
+                        max-width: 100%;
+                    }
+                    
+                    .form-group {
+                        margin-bottom: 24px;
+                    }
+                    
+                    .form-group label {
+                        display: block;
+                        font-size: 14px;
+                        font-weight: 500;
+                        color: #444;
+                        margin-bottom: 8px;
+                    }
+                    
+                    .form-control {
+                        width: 100%;
+                        padding: 12px 15px;
+                        border: 1px solid #ddd;
+                        border-radius: 8px;
+                        font-size: 14px;
+                        transition: border-color 0.3s;
+                    }
+                    
+                    .form-control:focus {
+                        border-color: #065c5c;
+                        outline: none;
+                        box-shadow: 0 0 0 2px rgba(6, 92, 92, 0.2);
+                    }
+                    
+                    .password-field {
+                        position: relative;
+                    }
+                    
+                    .password-toggle {
+                        position: absolute;
+                        right: 15px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        cursor: pointer;
+                        color: #777;
+                        background: none;
+                        border: none;
+                        padding: 0;
+                    }
+                    
+                    .login-btn {
+                        width: 100%;
+                        background-color: #065c5c;
+                        color: white;
+                        border: none;
+                        border-radius: 8px;
+                        padding: 14px;
+                        font-size: 16px;
+                        font-weight: 500;
+                        cursor: pointer;
+                        transition: background-color 0.3s;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    
+                    .login-btn:hover {
+                        background-color: #054545;
+                    }
+                    
+                    .login-btn i {
+                        margin-right: 8px;
+                    }
+                    
+                    .links-container {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-top: 15px;
+                        font-size: 13px;
+                    }
+                    
+                    .links-container a {
+                        color: #065c5c;
+                        text-decoration: none;
+                    }
+                    
+                    .links-container a:hover {
+                        text-decoration: underline;
+                    }
+                    
+                    .footer {
+                        text-align: center;
+                        margin-top: 30px;
+                        padding-top: 15px;
+                        border-top: 1px solid #eee;
+                        font-size: 12px;
+                        color: #777;
+                    }
+                    
+                    .footer a {
+                        color: #065c5c;
+                        text-decoration: none;
+                        margin: 0 8px;
+                    }
+                    
+                    .alert {
+                        padding: 12px;
+                        border-radius: 8px;
+                        margin-bottom: 20px;
+                    }
+                    
+                    .alert-danger {
+                        background-color: #ffebee;
+                        color: #c62828;
+                        border: 1px solid #ffcdd2;
+                    }
+                    
+                    .alert-success {
+                        background-color: #e8f5e9;
+                        color: #2e7d32;
+                        border: 1px solid #c8e6c9;
+                    }
+                </style>
+                
+                <!-- JavaScript for password visibility toggle -->
+                <script>
+                    function togglePassword() {
+                        var passwordField = document.getElementById('password');
+                        var toggleIcon = document.getElementById('password-toggle-icon');
+                        
+                        if (passwordField.type === 'password') {
+                            passwordField.type = 'text';
+                            toggleIcon.className = 'fa fa-eye-slash';
+                        } else {
+                            passwordField.type = 'password';
+                            toggleIcon.className = 'fa fa-eye';
+                        }
+                    }
+                </script>
+            </t>
+            
+            <div class="login-container">
+                <t t-raw="0"/>
+            </div>
+        </t>
+    </template>
+
+    <!-- Custom Login Form Template -->
+    <template id="middle_login_template" name="Midle Login">
+        <t t-call="fims_login_background_and_styles.middle_login_layout">
+            <div class="login-title">Login</div>
+            
+            <div class="logo-container">
+                <img t-attf-src="/web/binary/company_logo{{ '?dbname='+db if db else '' }}" alt="Logo"/>
+            </div>
+            
+            <form class="oe_login_form" role="form" t-attf-action="/web/login" method="post" onsubmit="this.action = '/web/login' + location.hash">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                
+                <!-- Hidden database field if needed -->
+                <div class="form-group field-db" t-if="databases and len(databases) &gt; 1" style="display:none;">
+                    <input type="text" name="db" t-att-value="request.db" id="db" class="form-control" required="required" readonly="readonly"/>
+                </div>
+                
+                <!-- Username field -->
+                <div class="form-group field-login">
+                    <label for="login">Email</label>
+                    <input type="text" name="login" id="login" class="form-control" required="required" autofocus="autofocus" autocapitalize="off" autocomplete="off" placeholder="Enter your email"/>
+
+                </div>
+                
+                <!-- Password field with toggle button -->
+                <div class="form-group field-password">
+                    <label for="password">Password <span style="color: #ff0000;">*</span></label>
+                    <div class="password-field">
+                        <input type="password" name="password" id="password" class="form-control" required="required" autocomplete="current-password" t-att-autofocus="'autofocus' if login else None" maxlength="4096" placeholder="Enter your password"/>
+                        <button type="button" class="password-toggle" onclick="togglePassword()">
+                            <i id="password-toggle-icon" class="fa fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Alert messages -->
+                <div class="alert alert-danger" t-if="error" role="alert">
+                    <t t-esc="error"/>
+                </div>
+                <div class="alert alert-success" t-if="message" role="status">
+                    <t t-esc="message"/>
+                </div>
+                
+                <!-- Login button -->
+                <button type="submit" class="login-btn">
+                    <i class="fa fa-sign-in"></i> Login
+                </button>
+                
+                <!-- Links for signup and reset password -->
+                <div class="links-container">
+                    <!-- <a t-if="signup_enabled" t-attf-href="/web/signup?{{ keep_query() }}">Don't have an account?</a> -->
+                    <a t-if="reset_password_enabled" t-attf-href="/web/reset_password?{{ keep_query() }}">Reset Password</a>
+                </div>
+                
+                <!-- Footer -->
+                <div class="footer" t-if="not disable_footer">
+                    <t t-if="not disable_database_manager">
+                        <a href="/web/database/manager">Manage Databases</a>
+                    </t>
+                    <a href="https://www.odoo.com?utm_source=db&amp;utm_medium=auth" target="_blank">Powered by <span>Odoo</span></a>
+                </div>
+                <input type="hidden" name="redirect" t-att-value="redirect"/>
+            </form>
+        </t>
+    </template>
+</odoo>
