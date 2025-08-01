@@ -14,46 +14,6 @@ from .nobox import Nobox
 
 
 
-# class PsbController(http.Controller):
-#     @http.route('/psb/statistics', type='http', auth='public', methods=['POST'], csrf=False)
-#     def get_statistics(self):
-#         Pendaftaran = request.env['ubig.pendaftaran'].sudo()
-#         data = Pendaftaran.get_psb_statistics()
-
-#         if request.httprequest.headers.get('Content-Type') == 'application/json':
-#             # Permintaan JSON
-#             return json.dumps(data)
-#         else:
-#             # Permintaan HTTP biasa
-#             return request.make_response(
-#                 json.dumps(data),
-#                 headers={'Content-Type': 'application/json'}
-#             )
-        
-#     @http.route('/pendaftaran/check', type='http', auth='public', methods=['POST'], csrf=False)
-#     def check_kuota(self):
-#         Pendaftaran = request.env['ubig.pendaftaran'].sudo()
-#         total_pendaftar = Pendaftaran.search_count([])
-
-#         # Mengambil nilai kuota pendaftaran dari ir.config_parameter
-#         config_param = request.env['ir.config_parameter'].sudo()
-#         kuota_pendaftaran = int(config_param.get_param('pesantren_pendaftaran.kuota_pendaftaran', default=0))
-
-#         data = {
-#             'is_full': total_pendaftar >= kuota_pendaftaran # True jika kuota penuh
-#         }
-
-#         if request.httprequest.headers.get('Content-Type') == 'application/json':
-#             # Permintaan JSON
-#             return json.dumps(data)
-#         else:
-#             # Permintaan HTTP biasa
-#             return request.make_response(
-#                 json.dumps(data),
-#                 headers={'Content-Type': 'application/json'}
-#             )
-
-
 class PesantrenBeranda(http.Controller):
     @http.route('/beranda_psb', type='http', auth='public')
     def index(self, **kwargs):
@@ -2569,7 +2529,7 @@ class PesantrenPsbBantuan(http.Controller):
                     /* Media Queries untuk Responsivitas */
                     @media (max-width: 768px) {{
                         .offcanvas.offcanvas-end {{
-                            width: 100%;
+                            width: 50%;
                         }}
 
                         .timeline::before {{
