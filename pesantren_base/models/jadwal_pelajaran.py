@@ -5,7 +5,7 @@ class JadwalPelajaran(models.Model):
     _name               = 'cdn.jadwal_pelajaran'
     _description        = 'Data Jadwal Pelajaran'
     _sql_constraints    = [
-        ('name_uniq', 'unique (name)', 'Jadwal kelas sudah ada!')
+        ('name_uniq', 'unique (name)', 'Jadwal kelas sudah ada!')   
     ]
 
     # default value
@@ -64,7 +64,7 @@ class JadwalPelajaranLine(models.Model):
     jampelajaran_id     = fields.Many2one('cdn.ref_jam_pelajaran', string='Jam Pelajaran', required=True)
     start_time          = fields.Float(string='Jam Mulai', related='jampelajaran_id.start_time', readonly=True , widget="float_time")
     end_time            = fields.Float(string='Jam Selesai', related='jampelajaran_id.end_time', readonly=True , widget="float_time")
-    matapelajaran_id    = fields.Many2one('cdn.mata_pelajaran', string='Mata Pelajaran', required=True)
+    matapelajaran_id    = fields.Many2one('cdn.mata_pelajaran', string='Mata Pelajaran')
     guru_id             = fields.Many2one('hr.employee', string='Guru',  domain=[('jns_pegawai','=','guru')])
 
     @api.onchange('start_time', 'end_time')

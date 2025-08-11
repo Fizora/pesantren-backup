@@ -45,7 +45,7 @@ class AbsensiSiswa(models.Model):
     tahunajaran_id      = fields.Many2one(comodel_name='cdn.ref_tahunajaran', string='Tahun Ajaran', related='kelas_id.tahunajaran_id', readonly=True, store=True)
     semester            = fields.Selection(selection=[('1', 'Ganjil'), ('2', 'Genap')], string='Semester', readonly=True, store=True)
     guru_id             = fields.Many2one(comodel_name='hr.employee', string='Guru', required=True, 
-                        domain=_get_domain_guru, default=_get_default_guru)
+                         default=_get_default_guru)#domain=_get_domain_guru,    
     pertemuan_ke        = fields.Integer(string='Pertemuan Ke', readonly=True, compute='_compute_pertemuan_ke', store=True)
     mapel_id            = fields.Many2one(comodel_name='cdn.mata_pelajaran', string='Mata pelajaran', required=True)
     rpp_id              = fields.Many2one(comodel_name='cdn.master_rpp', string='RPP')
@@ -142,6 +142,15 @@ class AbsensiSiswa(models.Model):
                 }
             else:
                 return {}
+
+    @api.onchange('kelas_id', 'tanggal')  
+    def _onchange_guru_domain(self):
+        return {
+            'domain': {
+                'guru_id': [('jns_pegawai','=','guru')],
+            }
+        }
+
 
 
 # class AbsensiSiswaLine(models.Model):

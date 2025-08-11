@@ -20,22 +20,18 @@ class AbsensiEkskul(models.Model):
         user = self.env.user
         if user.has_group('pesantren_guru.group_guru_staff'):
             user = self.env['hr.employee'].search([('user_id', '=', user.id)])  
-            return user.id
+            return user.ids
         return False
 
-    def _get_domain_ekskul(self):
-        user = self.env.user
-        return [
-            ('penanggung_id', '=', user.name),
-        ]
+    
 
     search          = fields.Char(string="Ya Hooo")
 
     name            = fields.Date(string='Tgl Absen', required=True, default=fields.Date.context_today)
     fiscalyear_id   = fields.Many2one('cdn.ref_tahunajaran', string='Tahun Ajaran', readonly=True, default=lambda self:self.env.user.company_id.tahun_ajaran_aktif.id)
-    guru            = fields.Many2one('hr.employee', string="Guru", required=True, 
-                      domain=_get_domain_guru, default=_get_default_guru)
-    ekskul_id       = fields.Many2one('cdn.pembagian_ekstra', required=True, domain=_get_domain_ekskul)
+    guru = fields.Many2one('hr.employee', string="Guru", required=True)
+    ekskul_id = fields.Many2one('cdn.pembagian_ekstra', string="Ekskul", required=True)
+    penanggung_id = fields.Many2one("hr.employee", string="Penanggung Jawab")
     absen_ids       = fields.One2many('cdn.absen_ekskul_line', 'absen_id', string='Daftar Absensi')
     states          = fields.Selection([
                         ('Proses', 'Proses'),
@@ -59,6 +55,8 @@ class AbsensiEkskul(models.Model):
         
     def action_done(self):
         self.states = 'Done'
+        
+    
         
     # def _get_absen_line_context(self):
     #     return {'state_not_draft': self.states != 'Draft'}

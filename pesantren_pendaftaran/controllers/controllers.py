@@ -42,7 +42,7 @@ class PesantrenBeranda(http.Controller):
         ]))
 
          # Ambil nilai dari field konfigurasi
-        config_obj = http.request.env['ir.config_parameter'].sudo()
+        config_obj = http.request.env['ir.config_parameter'].sudo() 
 
         tgl_mulai_pendaftaran = config_obj.get_param('pesantren_pendaftaran.tgl_mulai_pendaftaran')
         tgl_akhir_pendaftaran = config_obj.get_param('pesantren_pendaftaran.tgl_akhir_pendaftaran')
@@ -1228,7 +1228,7 @@ class PesantrenPendaftaran(http.Controller):
                             <li class="nav-item me-3">
                                 <a class="nav-link " href="/psb"><i class="fa-solid fa-house me-2" style="color:black !important;"></i>Beranda</a>
                             </li>
-                            {f'<li class="nav-item me-3">'
+                            {f'<li class="nav-item me-3">'  
                             f'<a class="nav-link " href="/pendaftaran" {"data-bs-toggle='modal' data-bs-target='#modalPendaftaranTutup'" if not is_halaman_pendaftaran else ""}>'
                             f'<i class="fa-solid fa-note-sticky me-2" style="color:black !important;"></i>Pendaftaran</a>'
                             f'</li>'}
@@ -1312,7 +1312,7 @@ class PesantrenPendaftaran(http.Controller):
                     <h4 class="fs-2 fw-semibold mb-2">Aplikasi penerimaan santri baru</h4>
                     <span>Daarul Qur'an Istiqomah Tanah Laut Kalimantan Selatan</span> <br><br>
                     {f'<div class="nav-item d-flex justify-content-center align-items-center">'
-                            f'<a class="nav-link " style="background-color: #059669; color: white; text-decoration: none; padding: 8px 16px; border-radius: 5px; font-size: 14px; width: 50%;" class=" id="daftar" href="/pendaftaran" {"data-bs-toggle='modal' data-bs-target='#modalPendaftaranTutup'" if not is_halaman_pendaftaran else ""}>'
+                            f'<a class="nav-link " style="background-color: #059669; color: white !important; text-decoration: none; padding: 8px 16px; border-radius: 5px; font-size: 14px; width: 50%;" class=" id="daftar" href="/pendaftaran" {"data-bs-toggle='modal' data-bs-target='#modalPendaftaranTutup'" if not is_halaman_pendaftaran else ""}>'
                             f'<i class="fa-solid fa-note-sticky d-none"></i>Daftar Sekarang !</a>'
                     f'</div>'}
                 </div>
@@ -2964,93 +2964,6 @@ class PortalOrangTua(http.Controller):
             'diterima': "Status ini menunjukkan bahwa pendaftaran telah diterima, dan peserta memenuhi syarat.",
             'ditolak': "Status ini menunjukkan bahwa pendaftaran ditolak karena tidak memenuhi kriteria atau persyaratan.",
         }
-
-        # Membuat HTML dinamis untuk setiap record
-        # rows_html = ''
-        # for rec in records:
-        #     csrf_token = request.csrf_token()  # Ambil CSRF token
-        #     # Tentukan status pembayaran dan kelas badge
-        #     status_text = (
-        #         'Menunggu Validasi'
-        #         if rec.bukti_pembayaran
-        #         else rec.status_pembayaran.replace('belumbayar', 'Belum Bayar').replace('sudahbayar', 'Sudah Bayar')
-        #     )
-
-        #     badge_class = (
-        #         'success'
-        #         if rec.status_pembayaran == 'sudahbayar'
-        #         else 'warning' if rec.bukti_pembayaran
-        #         else 'danger'
-        #     )
-
-        #     is_disabled = 'disabled' if rec.status_pembayaran == 'sudahbayar' else ''
-        #     state_html = ''
-        #     # Buat HTML untuk status pendaftaran siswa
-        #     for state_key, state_label in state_list:
-        #         tooltip_message = state_tooltip_messages.get(state_key, "Tidak ada informasi status.")
-        #         if state_key == rec.state:
-        #             state_html += f'<span class="badge me-1 mb-2 text-bg-primary" title="Ini adalah status pendaftaran saat ini dari anak anda. {tooltip_message}" data-bs-toggle="tooltip" data-bs-placement="bottom">{state_label}</span>'
-        #         else:
-        #             state_html += f'<span class="badge text-bg-secondary me-1 mb-2 inactive" title="{tooltip_message}" data-bs-toggle="tooltip" data-bs-placement="bottom">{state_label}</span>'
-            
-        #     # Progress bar untuk pendaftaran
-        #     if rec.state == "ditolak":
-        #         progress_html = ''
-        #     else:
-        #         progress_html = f"""
-        #         <div class="progress" style="height: 20px;">
-        #             <div class="progress-bar" role="progressbar" style="width: {state_progress.get(rec.state, 0)}%" 
-        #                 aria-valuenow="{state_progress.get(rec.state, 0)}" aria-valuemin="0" aria-valuemax="100">
-        #             </div>
-        #         </div>
-        #         Pendaftaran: {state_progress.get(rec.state, 0)}%
-        #         """
-
-        #     # Menambahkan HTML untuk satu baris data siswa
-        #     rows_html += f"""
-        #     <tr>
-        #         <td><span class="text-capitalize">{rec.partner_id.name}</span></td>
-        #         <td>
-        #             <div class="d-flex justify-content-center">
-        #                 <div class="mb-2">
-        #                     {state_html}
-        #                 </div>
-        #             </div>
-        #             {progress_html}
-        #         </td>
-        #         <td>
-        #             <span class="badge text-bg-{badge_class}">{status_text}</span>
-        #         </td>
-        #         <td>
-        #             <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#uploadModal-{rec.id}" {is_disabled}>
-        #             Upload Bukti
-        #             </button>
-                    
-        #             <!-- Modal -->
-        #             <div class="modal fade" id="uploadModal-{rec.id}" tabindex="-1" aria-labelledby="uploadModalLabel-{rec.id}" aria-hidden="true">
-        #                 <div class="modal-dialog">
-        #                     <div class="modal-content">
-        #                         <div class="modal-header">
-        #                             <h5 class="modal-title" id="uploadModalLabel-{rec.id}">Upload Bukti Pembayaran</h5>
-        #                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        #                         </div>
-        #                         <div class="modal-body">
-        #                             <form action="/upload_bukti_pembayaran" method="post" enctype="multipart/form-data">
-        #                                 <input type="hidden" name="csrf_token" value="{csrf_token}">
-        #                                 <input type="hidden" name="record_id" value="{rec.id}">
-        #                                 <div class="mb-3">
-        #                                     <label for="buktiPembayaran-{rec.id}" class="form-label">Pilih File</label>
-        #                                     <input type="file" class="form-control" id="buktiPembayaran-{rec.id}" name="bukti_pembayaran" required>
-        #                                 </div>
-        #                                 <button type="submit" class="btn btn-success">Upload</button>
-        #                             </form>
-        #                         </div>
-        #                     </div>
-        #                 </div>
-        #             </div>
-        #         </td>
-        #     </tr>
-        #     """
 
         rows_html = ''
         for rec in records:

@@ -182,9 +182,9 @@ export class GuruKpiCard extends Component {
         domain3.push(["tanggal", "<=", this.state.endDate]);
       }
 
-      domain.push(["penanggung_jawab_id", "=", session.partner_display_name]);
-      domain1.push(["guru_id", "=", session.partner_display_name]);
-      domain2.push(["guru_id", "=", session.partner_display_name]);
+      // domain.push(["penanggung_jawab_id", "=", session.partner_display_name]);
+      // domain1.push(["guru_id", "=", session.partner_display_name]);
+      // domain2.push(["guru_id", "=", session.partner_display_name]);
 
       let absensiTahfidz = await this.orm.call(
         "cdn.absen_tahfidz_quran",

@@ -59,13 +59,6 @@
                     <filter string="Ditolak" name="rejected" domain="[('state' ,'=', 'Rejected')]" />
                     <filter string="Santri Ijin" name="permission" domain="[('state' ,'=', 'Permission')]" />
                     <filter string="Kembali" name="return" domain="[('state' ,'=', 'Return')]" />
-                                            
-                    <!-- <filter string="Status Ijin" domain="[]" name="group_by_state" context="{'group_by':'state'}"/> -->
-
-                    <!-- group by siswa -->
-                    <!-- <group string="Siswa" colspan="4">
-                        <field name="siswa_id" />
-                    </group> -->
                     <group>
                         <filter string="Status Ijin" domain="[]" name="group_state" context="{'group_by':'state'}"/>
                     </group>

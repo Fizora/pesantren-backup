@@ -82,28 +82,6 @@
                                 <field name="keterangan"/>
                             </group>
                         </group>
-
-                        <!-- <group>
-                            <group>
-                                <field name="name" string="No. referensi"/>
-                                <field name="tgl_transaksi" readonly=" state not in ('draft')"/>
-                                <field name="siswa_id" options="{'no_create': True, 'no_create_edit': True, 'no_open': True}" readonly=" state not in ('draft')"/>
-                                <field name="orangtua_id"/> 
-                                <field name="va_saku"/>
-                                <field name="saldo_awal" widget="integer"/>
-                            </group>
-                            <group>
-                                <field name="jns_transaksi" readonly="state not in ('draft')"/>
-                                <field name="amount_in" widget="integer" invisible=" jns_transaksi != 'masuk'" readonly="state not in ('draft')"/>
-                                <field name="amount_out" widget="integer" invisible=" jns_transaksi != 'keluar'" readonly="state not in ('draft')"/>
-                            </group>
-                        </group>
-                        <group>
-                            <field name="validasi_id"/>
-                            <field name="validasi_time" readonly='1'/>
-                            <field name="keterangan"/>
-                        </group> -->
-
                     </sheet>
                 </form>
             </field>

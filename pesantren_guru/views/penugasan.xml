@@ -83,7 +83,7 @@
       <field name="view_mode">list,form</field>
       <field name="domain">
       [
-          ('guru_id.user_id','=',uid)
+        ('state', 'in', ['draft', 'proses', 'done' ])
       ]
       </field>
     </record>
