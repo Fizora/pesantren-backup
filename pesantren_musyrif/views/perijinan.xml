@@ -14,14 +14,11 @@
                
                 <xpath expr="//button[@name='action_approved']" position="replace">
                     <button string="Ijin Diterima" type="object" name="action_approved" groups="pesantren_musyrif.group_musyrif_staff" invisible="state != 'Check'" />
-
                 </xpath>
-        
+                
                 <xpath expr="//button[@name='action_rejected']" position="replace">
                     <button string="Ijin Ditolak" type="object" name="action_rejected" groups="pesantren_musyrif.group_musyrif_staff" invisible="state != 'Check'" />
                 </xpath>
-
- 
             </field>
         </record>
 
