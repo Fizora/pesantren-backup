@@ -15,7 +15,7 @@
                 <xpath expr="//button[@name='action_approved']" position="replace">
                     <button string="Ijin Diterima" type="object" name="action_approved" groups="pesantren_musyrif.group_musyrif_staff" invisible="state != 'Check'" />
                 </xpath>
-                
+
                 <xpath expr="//button[@name='action_rejected']" position="replace">
                     <button string="Ijin Ditolak" type="object" name="action_rejected" groups="pesantren_musyrif.group_musyrif_staff" invisible="state != 'Check'" />
                 </xpath>
@@ -33,7 +33,7 @@
                             '|', ('name', 'ilike', self),
                             '|', ('tgl_ijin', 'ilike', self),
                             '|', ('siswa_id', 'ilike', self),
-                            '|', ('siswa_id.barcode_santri', 'ilike', self),
+                            '|', ('siswa_id.barcode_santri', 'ilike'    , self),
                             '|', ('kamar_id', 'ilike', self),
                             '|', ('halaqoh_id', 'ilike', self),
                             '|', ('musyrif_id', 'ilike', self),

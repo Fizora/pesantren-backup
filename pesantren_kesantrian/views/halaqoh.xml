@@ -6,7 +6,7 @@
             <field name="name">cdn.halaqoh.view.list</field>
             <field name="model">cdn.halaqoh</field>
             <field name="arch" type="xml">
-                <list string="halaqoh">
+                <list expand="1">
                     <field name="fiscalyear_id"/>
                     <field name="name"/>
                     <field name="penanggung_jawab_id" />
@@ -107,7 +107,7 @@
             <field name="name">Halaqah</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">cdn.halaqoh</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
             <field name="context">{ "search_default_group_by_fiscalyear_id": 1}</field>
         </record>
 

@@ -54,7 +54,7 @@ class AbsensiSiswa(models.Model):
     materi              = fields.Text(string='Materi', required=True)
     state               = fields.Selection(selection=[('draft', 'Draft'), ('done', 'Done')], string='State', default='draft')
     absensi_ids         = fields.One2many(comodel_name='cdn.absensi_siswa_lines', inverse_name='absensi_id', string='Absensi Siswa')
-
+    
     # action
     def action_draft(self):
         self.state = 'draft'
@@ -150,6 +150,7 @@ class AbsensiSiswa(models.Model):
                 'guru_id': [('jns_pegawai','=','guru')],
             }
         }
+        
 
 
 
